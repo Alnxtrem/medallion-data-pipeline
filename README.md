@@ -1,26 +1,72 @@
-# Medallion Pipeline Demo
+# Medallion Data Pipeline with React Dashboard
 
-Projeto de portfólio com arquitetura medalhão usando dados sintéticos, ETL em Python e dashboard em React.
+Este projeto implementa um pipeline de dados completo baseado na arquitetura Medalhão (Bronze, Silver e Gold), simulando um cenário real de negócio com geração de dados sintéticos, processamento em Python e visualização em um dashboard React.
 
-## O que este projeto mostra
+## Visão Geral
 
-- Geração de dados fakes com clientes, datas, status e valores.
-- Tratamento na camada `silver` com limpeza e padronização.
-- Agregações na camada `gold` para faturamento mensal, ranking de clientes e visão executiva.
-- Dashboard React consumindo os JSONs publicados automaticamente em `dashboard-react/public/data`.
+O objetivo é demonstrar um fluxo de dados ponta a ponta, desde a ingestão até o consumo analítico, seguindo boas práticas de engenharia de dados.
 
-## Estrutura
+O pipeline inclui:
+
+* Geração de dados sintéticos em escala
+* Tratamento e padronização de dados
+* Criação de métricas de negócio
+* Disponibilização para consumo via frontend
+
+## Dashboard
+
+<p align="center">
+  <img src="assets/dashboard.png" width="800"/>
+</p>
+
+## Gráfico de Faturamento
+
+<p align="center">
+  <img src="assets/grafico_faturamento.png" width="800"/>
+</p>
+
+## Arquitetura
+
+A arquitetura segue o padrão Medalhão:
+
+* **Bronze**: dados brutos gerados, sem tratamento
+* **Silver**: dados limpos, tipados e estruturados
+* **Gold**: dados agregados com foco em métricas de negócio
+
+Fluxo:
+
+Bronze → Silver → Gold → Dashboard (React)
+
+## Métricas Geradas
+
+A camada Gold disponibiliza:
+
+* Faturamento total
+* Faturamento por cliente
+* Faturamento mensal
+* Ranking de clientes (Top N)
+
+Essas métricas simulam indicadores utilizados em contextos reais de análise de desempenho.
+
+## Tecnologias Utilizadas
+
+* Python (Pandas, Faker)
+* React (Frontend)
+* CSV e JSON como camadas de persistência
+
+## Estrutura do Projeto
 
 ```text
-bronze/         dados brutos gerados
-silver/         dados tratados
-gold/           agregacoes finais em CSV
-dashboard/      exportacao JSON da camada gold
-dashboard-react/ front-end do dashboard
-etl/            scripts do pipeline
+bronze/             dados brutos gerados
+silver/             dados tratados e enriquecidos
+gold/               dados agregados para consumo
+dashboard/          exportações JSON da camada gold
+dashboard-react/    aplicação React
+etl/                scripts do pipeline
+assets/             imagens do projeto
 ```
 
-## Como rodar
+## Como Executar
 
 ### 1. Instalar dependências Python
 
@@ -28,7 +74,7 @@ etl/            scripts do pipeline
 pip install -r requirements.txt
 ```
 
-### 2. Executar o pipeline
+### 2. Executar o pipeline de dados
 
 ```bash
 python etl/generate_data.py
@@ -36,7 +82,7 @@ python etl/bronze_to_silver.py
 python etl/silver_to_gold.py
 ```
 
-### 3. Subir o front-end
+### 3. Executar o dashboard
 
 ```bash
 cd dashboard-react
@@ -44,8 +90,22 @@ npm install
 npm start
 ```
 
-## Observações
+O dashboard estará disponível em:
+http://localhost:3000
 
-- O dashboard usa apenas transações com `status = pago` para calcular receita.
-- Os arquivos JSON consumidos pelo React são atualizados na etapa `silver_to_gold.py`.
-- Os dados e análises são sintéticos e servem apenas para demonstração.
+## Considerações
+
+* Os dados são sintéticos e foram gerados exclusivamente para fins de demonstração.
+* O pipeline simula cenários reais, incluindo dados incompletos e necessidade de tratamento.
+* O dashboard consome diretamente os arquivos JSON gerados na camada Gold.
+
+## Objetivo do Projeto
+
+Este projeto demonstra, na prática, conceitos essenciais de engenharia de dados:
+
+* Arquitetura em camadas (Medalhão)
+* Qualidade e tratamento de dados
+* Modelagem orientada a consumo
+* Integração entre backend e frontend
+
+Serve como base para evoluções como uso de banco de dados, APIs ou orquestração de pipelines.
