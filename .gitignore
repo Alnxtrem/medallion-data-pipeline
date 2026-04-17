@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+
+dashboard-react/node_modules/
+dashboard-react/build/
+dashboard-react/coverage/
+
+.DS_Store
+Thumbs.db
+*.log
