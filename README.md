@@ -15,15 +15,11 @@ O pipeline inclui:
 
 ## Dashboard
 
-<p align="center">
-  <img src="assets/dashboard.png" width="800"/>
-</p>
+<img width="1600" height="899" alt="image" src="https://github.com/user-attachments/assets/78eadba1-b3bd-4e3e-beb3-fb44a8c5c2b4" />
 
 ## Gráfico de Faturamento
 
-<p align="center">
-  <img src="assets/grafico_faturamento.png" width="800"/>
-</p>
+<img width="1600" height="899" alt="image" src="https://github.com/user-attachments/assets/c43c6757-24e8-4eee-a675-bdc8a5a21580" />
 
 ## Arquitetura
 
